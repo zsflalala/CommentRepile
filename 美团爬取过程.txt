@@ -1,0 +1,91 @@
+获得评论
+请求网址:
+    https://bj.meituan.com/meishi/api/poi/getMerchantComment?
+    uuid=702525fd116b48578bc4.1675943406.1.0.0&
+    platform=1&
+    partner=126&
+    originUrl=https%3A%2F%2Fbj.meituan.com%2Fmeishi%2F1392592545%2F&riskLevel=1&optimusCode=10&
+    id=1392592545&
+    userId=3352525637&
+    offset=0&pageSize=10&
+    sortType=1&
+    tag
+载荷(放在url网址中):
+例一:
+    uuid: 702525fd116b48578bc4.1675943406.1.0.0
+    platform: 1
+    partner: 126
+    originUrl: https://bj.meituan.com/meishi/1392592545/
+    riskLevel: 1
+    optimusCode: 10
+    id: 1392592545
+    userId: 3352525637
+    offset: 0
+    pageSize: 10
+    sortType: 1
+    tag: 
+例二:
+    uuid: 702525fd116b48578bc4.1675943406.1.0.0
+    platform: 1
+    partner: 126
+    originUrl: https://bj.meituan.com/meishi/1630723512/
+    riskLevel: 1
+    optimusCode: 10
+    id: 1630723512
+    userId: 3352525637
+    offset: 0
+    pageSize: 10
+    sortType: 1
+    tag: 
+
+    观察载荷的地址发现,originUrl和id发生了变化,其他不变。而变化的是商店的id,在{"poi_id":"546024424"}存储
+
+获得最大页数
+请求网址
+    https://bj.meituan.com/meishi/api/poi/getPoiList?
+    cityName=北京&
+    cateId=54&
+    areaId=0&
+    sort=&
+    dinnerCountAttrId=&
+    page=1&
+    userId=3352525637&
+    uuid=702525fd116b48578bc4.1675943406.1.0.0&
+    platform=1&
+    partner=126&originUrl=https%3A%2F%2Fbj.meituan.com%2Fmeishi%2Fc54%2Fpn1%2F&riskLevel=1&
+    optimusCode=10&_token=eJyNj0mPm0AUhP9LXxu52XFbygFjbJbxBgZiR3OANrbZehgWGxzlv6dHcQ65RXpSVX%2BvVHr9EzT2GcwEnsc8z4F72oAZECb8RAUc6Fq2UTWVl7SpLAiKxgHyLxNlxpImXIDZD0GRVE6W8PsX8Rj4Q7DKv3MvKzIrymy%2BMjaLgFvX1e0MoSSfVGnW9TGdkI8KMd%2FeMkQUGdVUQOyW%2FwmKCLDi6sCKmRYvjV%2Fa%2FX2v2RdZY5tdKXOp8wjzoOv10dx7W5TNgxZalUF845E1o3MS00BfrAytgGYeG89y0VHNzNX5E%2B6ILWRYXaZl039uGrKC6XTrtMN15ZoFkdfQyok1RaF8wcN9KJbuB8SPwz2zIhJ44%2F6YYS1Z7zxq%2BK7yuF7OSUjny7dUDFsY24NuxcnnuvcWkUKPpuKEtXOtN%2FnBsJWQhPukPUdFM493PTndQjG%2F3CTdUaERuUPjR1IOqR8LVryl1WW%2Fldrn1D3i1HiTbHqqpUzZBOqywqNZjof997JcIaiTGPva8Rv49RsNtaDx
+载荷
+例一:
+    cityName: 北京
+    cateId: 54
+    areaId: 0
+    sort: 
+    dinnerCountAttrId: 
+    page: 1
+    userId: 3352525637
+    uuid: 702525fd116b48578bc4.1675943406.1.0.0
+    platform: 1
+    partner: 126
+    originUrl: https://bj.meituan.com/meishi/c54/pn1/
+    riskLevel: 1
+    optimusCode: 10
+    _token: eJyNj0mPm0AUhP9LXxu52XFbygFjbJbxBgZiR3OANrbZehgWGxzlv6dHcQ65RXpSVX+vVHr9EzT2GcwEnsc8z4F72oAZECb8RAUc6Fq2UTWVl7SpLAiKxgHyLxNlxpImXIDZD0GRVE6W8PsX8Rj4Q7DKv3MvKzIrymy+MjaLgFvX1e0MoSSfVGnW9TGdkI8KMd/eMkQUGdVUQOyW/wmKCLDi6sCKmRYvjV/a/X2v2RdZY5tdKXOp8wjzoOv10dx7W5TNgxZalUF845E1o3MS00BfrAytgGYeG89y0VHNzNX5E+6ILWRYXaZl039uGrKC6XTrtMN15ZoFkdfQyok1RaF8wcN9KJbuB8SPwz2zIhJ44/6YYS1Z7zxq+K7yuF7OSUjny7dUDFsY24NuxcnnuvcWkUKPpuKEtXOtN/nBsJWQhPukPUdFM493PTndQjG/3CTdUaERuUPjR1IOqR8LVryl1WW/ldrn1D3i1HiTbHqqpUzZBOqywqNZjof997JcIaiTGPva8Rv49RsNtaDx
+例二:
+    cityName: 北京
+    cateId: 393
+    areaId: 0
+    sort: 
+    dinnerCountAttrId: 
+    page: 1
+    userId: 3352525637
+    uuid: 702525fd116b48578bc4.1675943406.1.0.0
+    platform: 1
+    partner: 126
+    originUrl: https://bj.meituan.com/meishi/c393/
+    riskLevel: 1
+    optimusCode: 10
+    _token: eJxVkNGOojAUht+ltxIpbW2pd84KCjvo7iCobOaCgSqgqEBBcbPvviUze7FJk/Od7/w5OelvUDspmBoQcgg10IkaTIExhmMKNCAbNaGMQmwiQoihAsn/bsKxBj7qcA6mv4wJphoh7H0wb0p8Gk7hu/aFSCEi6g0ZR0VAJuWtmer6RzEuRS7b+DJOrqWuuMlyPcEc6+oQoPLlZshTzjWDQeUYgRqCk4HoREMYDaTOQRQrMpGacjYQhRr+dIxo2OQDmVBdOhnWnoa1qsZfVf7rPfURKtrkx4si4d7DIjDaWW95mRj5L4Ec3Y/9Jly4b1G4vdGKLPfei+vPkv0xLoM12hz80U9rHXBWPOueXHDX75hoZ3X7GhZuZ3lHuOxWB29TZ1AedUT0jpjs29O+VM7B9xjJQ3nLo2S7F0UbzOzIDcur+Tg8IhvLxW7Vvlo/1rZLiv1OxCPXWibPs02qLG1SX1CnOjtdGMl52OwyM/UtMzBkxfHIie3W3X4/d8HiSdO4MJr42h+24v5ApxNnc6uKRJqvIGJoZqTlohPzZbXJ8lPTrnTTWgT1Cfz5C9jsoaM=
+
+    观察载荷发现,变化的是cateId和originiUrl, cateId是当前网址的标签属性,originiUrl来自上一次网页
+
+最终发先获取评论网址只需要改变poiId即可,即每个店铺的id

@@ -1,0 +1,72 @@
+获取评论
+请求网址
+例一:
+    https://www.douyin.com/aweme/v1/web/comment/list/?
+    device_platform=webapp&
+    aid=6383&channel=channel_pc_web&
+    aweme_id=7088526893250579716&
+    cursor=0&
+    count=20&
+    item_type=0&
+    insert_ids=&
+    rcFT=&
+    pc_client_type=1&
+    version_code=170400&
+    version_name=17.4.0&
+    cookie_enabled=true&
+    screen_width=1536&
+    screen_height=960&
+    browser_language=zh-CN&
+    browser_platform=Win32&
+    browser_name=Chrome&
+    browser_version=110.0.0.0&
+    browser_online=true&
+    engine_name=Blink&
+    engine_version=110.0.0.0&
+    os_name=Windows&
+    os_version=10&
+    cpu_core_num=8&
+    device_memory=8&
+    platform=PC&
+    downlink=10&
+    effective_type=4g&
+    round_trip_time=50&
+    webid=7196130140362655290&msToken=ILdlZw8QTlQv4R_Vq1UraAaFjxG7uYLcZ1jS2dZIy2QZNjMQ1OJzOoYg10KYP36PmmzPPbwBHPK5uVsbA6j2wh6gx84N5UoTPbNrnlLnrovEY8sWltgvzMM238-BnVQ=&
+    X-Bogus=DFSzswVu7w2ANJPISh/B6M9WX7jB
+例二:
+    https://www.douyin.com/aweme/v1/web/comment/list/?
+    device_platform=webapp&
+    aid=6383&
+    channel=channel_pc_web&
+    aweme_id=7088526724622781711&
+    cursor=0&
+    count=20&
+    item_type=0&
+    insert_ids=&
+    rcFT=&
+    pc_client_type=1&
+    version_code=170400&
+    version_name=17.4.0&
+    cookie_enabled=true&
+    screen_width=1536&
+    screen_height=960&
+    browser_language=zh-CN&
+    browser_platform=Win32&
+    browser_name=Chrome&
+    browser_version=110.0.0.0&
+    browser_online=true&engine_name=Blink&
+    engine_version=110.0.0.0&
+    os_name=Windows&
+    os_version=10&
+    cpu_core_num=8&
+    device_memory=8&
+    platform=PC&
+    downlink=10&
+    effective_type=4g&
+    round_trip_time=50&
+    webid=7196130140362655290&msToken=WB5Wfds6B9YvuFwbCazOtKlCQEcZnD9WEQd3dWkPwnbYr6kx4g6FTNU712trMTSccNdoaCeHB3qO_SGvbDSLABRG3LbCP_2gDF99cfdZBDfBiHsG3w1simVLk917-BA=&
+    X-Bogus=DFSzswVugnvANJPISh/wgl9WX7rB
+
+    发现改动的地方太多了X-bogus、msToken和Cookie都是临时JS发送的,并且每个视频都不一样，所以不能一次性批量获取,想要获取要采用js逆向分析,故不得已采用selenium半自动化的方式
+
+    该方法需要先打开抖音视频,打开评论,用力划到底,即可采集已有的评论数据
