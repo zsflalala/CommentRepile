@@ -6,7 +6,9 @@ import asyncio
 import aiohttp
 
 
-# 注: 想要运行成功,首先登录美团网站,根据获得Cookie修改以下代码中Headers中Cookie值
+# 注: 想要运行成功,首先登录美团网站,根据获得Cookie修改以下代码中Headers中Cookie值,具体看文件夹流程图
+# 截至2023/4/2 美团网页美食评论页面出现故障,可能是修改页面,可能是页面崩了,暂时爬不了评论数据
+# 不过已将评论数据内容url放置 meituan_url.txt 文件中,截至2023/4/2 仍能访问(网页先登录美团), 可直接运行main函数中后两步
 
 # 初步测试如何爬取美团评论数据
 def meituan_url():
@@ -97,7 +99,6 @@ def getMeituan():
     cateId = []
     for Url in originUrl_list:
         cateId.append(Url.split('/')[-2][1:])
-    print(cateId)
 
     for cateid in cateId:
         maxUrl = f'https://bj.meituan.com/meishi/api/poi/getPoiList?cityName={CITYNAME}&cateId={cateid}&areaId=0&sort=&dinnerCountAttrId=&page=1&userId=3352525637&uuid=702525fd116b48578bc4.1675943406.1.0.0&platform=1&partner=126&originUrl=https%3A%2F%2Fbj.meituan.com%2Fmeishi%2Fc393%2&riskLevel=1&optimusCode=10&_token=eJxVjl9vokAUxb%2FLvEJkgCkwvtEVELZot8CobPpAYfgrKjCguNnvvtPUPmxyk3Puub%2BbnD%2BgdzOwlCHEEIpgoj1YAnkBFxoQARv4RdM1iBCC2MBPIkj%2Fz7DBnz56sgLL3%2FKTqomaYrx%2FJm88%2BEqwBt%2FFh1W4VRCfT8blCCgZuwxLSfqoFy2t2JicFum5lbgfykpKVaxKvAjgfBtynmvz0OSh7Hv3eXPODlVx4o56V1JH8mjOll9SIXiOmHAt5pA43ltMdhetQ%2BuD%2F%2BwFZnookjbaKmEeCL%2BsbYT1%2Bt7P6KRO816no9mPL6T2Jssv4Hra5H7Yl5AVkoKkCRn6j7t96tw88HVUEXap4nR3oPUYmXbskfZs3PJbbKvM2W%2FGF%2Bt1a3uoPuxpInjWOr0fbdSV2ZAFVHO7ozuRmK3IsC%2BNLLCMSGYdVgU3sUdv9%2FM4Rc5dy5JaHpLznO%2Fo9aY0DdZXVhfTrNpARVdMOWudia7WXVhWzTBuJMNyor4Bf%2F8BEFuTHg%3D%3D'
@@ -143,7 +144,7 @@ def get_cityname():
     cityurl = 'https://www.meituan.com/changecity/'
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-        'Cookie':'uuid=702525fd116b48578bc4.1675943406.1.0.0; _lxsdk_cuid=1863602fe4ec8-00221287d3f5ff-26021051-168000-1863602fe4eaa; WEBDFPID=3wx7944x830v5y120vy65zwyu72046288136397u9z3979583724v7z3-1991303412282-1675943411504SICWEKWfd79fef3d01d5e9aadc18ccd4d0c95074238; ci=1; rvct=1; client-id=0d2945ed-68f2-413d-b85c-b20b0037249f; mtcdn=K; _hc.v=f708e0ca-90c8-32f8-309f-2dbe356faf69.1675943516; iuuid=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; _lxsdk=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; IJSESSIONID=node0eipfnxkad9ml137lduez07smu12501051; cityname=%E5%8C%97%E4%BA%AC; userTicket=FHjqZLRdtNLYdnFTFEbEFiKMPEnFczUaBxUcawiV; _lx_utm=utm_source%3Dbing%26utm_medium%3Dorganic; lat=39.92501; lng=116.59771; qruuid=1715ed80-ab43-4740-8075-3847ff6f383f; token2=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; oops=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; lt=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; u=3003462955; n=gIa130670404; unc=gIa130670404; firstTime=1676081255132; __mta=145128971.1675943418903.1676080512699.1676081255958.22; _lxsdk_s=1863e2cfb3c-63f-38c-9e6%7C%7C41'
+        'Cookie':'_lxsdk_cuid=1863602fe4ec8-00221287d3f5ff-26021051-168000-1863602fe4eaa; WEBDFPID=3wx7944x830v5y120vy65zwyu72046288136397u9z3979583724v7z3-1991303412282-1675943411504SICWEKWfd79fef3d01d5e9aadc18ccd4d0c95074238; _hc.v=f708e0ca-90c8-32f8-309f-2dbe356faf69.1675943516; iuuid=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; _lxsdk=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; cityname=%E5%8C%97%E4%BA%AC; ci=1; rvct=1%2C140%2C382%2C10; __mta=145128971.1675943418903.1676084135258.1676104841696.24; uuid=2700efcb13bc4b01b495.1679800560.1.0.0; latlng=39.928159%2C116.301426; ci3=1; _lx_utm=utm_source%3Dgoogle%26utm_medium%3Dorganic; qruuid=2c6cdb43-d56e-47e9-b318-e0fa9f77f1b8; token2=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; oops=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; lt=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; u=3352525637; n=%E7%A6%8F%E6%98%9F%E9%AB%98%E7%85%A7%E5%AF%BF%E6%AF%94%E5%8D%97%E5%B1%B1; unc=%E7%A6%8F%E6%98%9F%E9%AB%98%E7%85%A7%E5%AF%BF%E6%AF%94%E5%8D%97%E5%B1%B1; lat=40.052377; lng=116.310177; client-id=79f01014-150a-4c33-bfec-56032a3886de; firstTime=1680436820577; _lxsdk_s=18741d40e86-4a5-b61-636%7C%7C21'
     }
     response = requests.get(url=cityurl,headers=headers)
 
@@ -157,13 +158,14 @@ def get_cityname():
         for a in a_llist:
             CITYURL.append('https:' + a.xpath('./@href')[0] + '/meishi/') 
             CITYNAME.append(a.xpath('./text()')[0])
+    print('所有城市列表: ',CITYNAME)
 
 # 获取所有类别选项id
 def get_cateId():
     basicUrl = 'https://bj.meituan.com/meishi/'
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-        'Cookie':'uuid=702525fd116b48578bc4.1675943406.1.0.0; _lxsdk_cuid=1863602fe4ec8-00221287d3f5ff-26021051-168000-1863602fe4eaa; WEBDFPID=3wx7944x830v5y120vy65zwyu72046288136397u9z3979583724v7z3-1991303412282-1675943411504SICWEKWfd79fef3d01d5e9aadc18ccd4d0c95074238; ci=1; rvct=1; client-id=0d2945ed-68f2-413d-b85c-b20b0037249f; mtcdn=K; _hc.v=f708e0ca-90c8-32f8-309f-2dbe356faf69.1675943516; iuuid=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; _lxsdk=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; IJSESSIONID=node0eipfnxkad9ml137lduez07smu12501051; cityname=%E5%8C%97%E4%BA%AC; userTicket=FHjqZLRdtNLYdnFTFEbEFiKMPEnFczUaBxUcawiV; _lx_utm=utm_source%3Dbing%26utm_medium%3Dorganic; lat=39.92501; lng=116.59771; qruuid=1715ed80-ab43-4740-8075-3847ff6f383f; token2=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; oops=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; lt=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; u=3003462955; n=gIa130670404; unc=gIa130670404; firstTime=1676081255132; __mta=145128971.1675943418903.1676080512699.1676081255958.22; _lxsdk_s=1863e2cfb3c-63f-38c-9e6%7C%7C41'
+        'Cookie':'_lxsdk_cuid=1863602fe4ec8-00221287d3f5ff-26021051-168000-1863602fe4eaa; WEBDFPID=3wx7944x830v5y120vy65zwyu72046288136397u9z3979583724v7z3-1991303412282-1675943411504SICWEKWfd79fef3d01d5e9aadc18ccd4d0c95074238; _hc.v=f708e0ca-90c8-32f8-309f-2dbe356faf69.1675943516; iuuid=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; _lxsdk=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; cityname=%E5%8C%97%E4%BA%AC; ci=1; rvct=1%2C140%2C382%2C10; __mta=145128971.1675943418903.1676084135258.1676104841696.24; uuid=2700efcb13bc4b01b495.1679800560.1.0.0; latlng=39.928159%2C116.301426; ci3=1; _lx_utm=utm_source%3Dgoogle%26utm_medium%3Dorganic; qruuid=2c6cdb43-d56e-47e9-b318-e0fa9f77f1b8; token2=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; oops=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; lt=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; u=3352525637; n=%E7%A6%8F%E6%98%9F%E9%AB%98%E7%85%A7%E5%AF%BF%E6%AF%94%E5%8D%97%E5%B1%B1; unc=%E7%A6%8F%E6%98%9F%E9%AB%98%E7%85%A7%E5%AF%BF%E6%AF%94%E5%8D%97%E5%B1%B1; lat=40.052377; lng=116.310177; client-id=79f01014-150a-4c33-bfec-56032a3886de; firstTime=1680436820577; _lxsdk_s=18741d40e86-4a5-b61-636%7C%7C21'
     }
     
     session = requests.Session()
@@ -177,14 +179,14 @@ def get_cateId():
     cateId = []
     for Url in originUrl_list:
         cateId.append(Url.split('/')[-2][1:])
-    print(cateId)
+    print('cateId 列表:',cateId)
     return cateId
 
 # 获取商铺id
 def get_poiId(pageShopUrl):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-        'Cookie':'uuid=702525fd116b48578bc4.1675943406.1.0.0; _lxsdk_cuid=1863602fe4ec8-00221287d3f5ff-26021051-168000-1863602fe4eaa; WEBDFPID=3wx7944x830v5y120vy65zwyu72046288136397u9z3979583724v7z3-1991303412282-1675943411504SICWEKWfd79fef3d01d5e9aadc18ccd4d0c95074238; ci=1; rvct=1; client-id=0d2945ed-68f2-413d-b85c-b20b0037249f; mtcdn=K; _hc.v=f708e0ca-90c8-32f8-309f-2dbe356faf69.1675943516; iuuid=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; _lxsdk=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; IJSESSIONID=node0eipfnxkad9ml137lduez07smu12501051; cityname=%E5%8C%97%E4%BA%AC; userTicket=FHjqZLRdtNLYdnFTFEbEFiKMPEnFczUaBxUcawiV; _lx_utm=utm_source%3Dbing%26utm_medium%3Dorganic; lat=39.92501; lng=116.59771; qruuid=1715ed80-ab43-4740-8075-3847ff6f383f; token2=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; oops=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; lt=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; u=3003462955; n=gIa130670404; unc=gIa130670404; firstTime=1676081255132; __mta=145128971.1675943418903.1676080512699.1676081255958.22; _lxsdk_s=1863e2cfb3c-63f-38c-9e6%7C%7C41'
+        'Cookie':'_lxsdk_cuid=1863602fe4ec8-00221287d3f5ff-26021051-168000-1863602fe4eaa; WEBDFPID=3wx7944x830v5y120vy65zwyu72046288136397u9z3979583724v7z3-1991303412282-1675943411504SICWEKWfd79fef3d01d5e9aadc18ccd4d0c95074238; _hc.v=f708e0ca-90c8-32f8-309f-2dbe356faf69.1675943516; iuuid=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; _lxsdk=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; cityname=%E5%8C%97%E4%BA%AC; ci=1; rvct=1%2C140%2C382%2C10; __mta=145128971.1675943418903.1676084135258.1676104841696.24; uuid=2700efcb13bc4b01b495.1679800560.1.0.0; latlng=39.928159%2C116.301426; ci3=1; _lx_utm=utm_source%3Dgoogle%26utm_medium%3Dorganic; qruuid=2c6cdb43-d56e-47e9-b318-e0fa9f77f1b8; token2=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; oops=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; lt=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; u=3352525637; n=%E7%A6%8F%E6%98%9F%E9%AB%98%E7%85%A7%E5%AF%BF%E6%AF%94%E5%8D%97%E5%B1%B1; unc=%E7%A6%8F%E6%98%9F%E9%AB%98%E7%85%A7%E5%AF%BF%E6%AF%94%E5%8D%97%E5%B1%B1; lat=40.052377; lng=116.310177; client-id=79f01014-150a-4c33-bfec-56032a3886de; firstTime=1680436820577; _lxsdk_s=18741d40e86-4a5-b61-636%7C%7C21'
     }
     session = requests.Session()
     response = session.get(url=pageShopUrl,headers=headers)
@@ -196,7 +198,7 @@ def get_poiId(pageShopUrl):
 def get_commenturl(cityname,cityurl):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-        'Cookie':'uuid=702525fd116b48578bc4.1675943406.1.0.0; _lxsdk_cuid=1863602fe4ec8-00221287d3f5ff-26021051-168000-1863602fe4eaa; WEBDFPID=3wx7944x830v5y120vy65zwyu72046288136397u9z3979583724v7z3-1991303412282-1675943411504SICWEKWfd79fef3d01d5e9aadc18ccd4d0c95074238; ci=1; rvct=1; client-id=0d2945ed-68f2-413d-b85c-b20b0037249f; mtcdn=K; _hc.v=f708e0ca-90c8-32f8-309f-2dbe356faf69.1675943516; iuuid=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; _lxsdk=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; IJSESSIONID=node0eipfnxkad9ml137lduez07smu12501051; cityname=%E5%8C%97%E4%BA%AC; userTicket=FHjqZLRdtNLYdnFTFEbEFiKMPEnFczUaBxUcawiV; _lx_utm=utm_source%3Dbing%26utm_medium%3Dorganic; lat=39.92501; lng=116.59771; qruuid=1715ed80-ab43-4740-8075-3847ff6f383f; token2=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; oops=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; lt=AgFnIiDzwAgXonbHpNm0jX2q0pxzuh275jpBB17foauYfJWs_pRqRvQh4ccTPMMq2qpN_jgUrkllWwAAAACMFgAABKZXTexo5bNQlw2GLf-UHdePjQbS5_ZiW8-2c4tqmb2sXiouAv0gT0zginxPwusS; u=3003462955; n=gIa130670404; unc=gIa130670404; firstTime=1676081255132; __mta=145128971.1675943418903.1676080512699.1676081255958.22; _lxsdk_s=1863e2cfb3c-63f-38c-9e6%7C%7C41'
+        'Cookie':'_lxsdk_cuid=1863602fe4ec8-00221287d3f5ff-26021051-168000-1863602fe4eaa; WEBDFPID=3wx7944x830v5y120vy65zwyu72046288136397u9z3979583724v7z3-1991303412282-1675943411504SICWEKWfd79fef3d01d5e9aadc18ccd4d0c95074238; _hc.v=f708e0ca-90c8-32f8-309f-2dbe356faf69.1675943516; iuuid=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; _lxsdk=52920774B3C74F49D5EEC95BCA12A285143F22F41BB50BE38F5CF6F631F01DE7; cityname=%E5%8C%97%E4%BA%AC; ci=1; rvct=1%2C140%2C382%2C10; __mta=145128971.1675943418903.1676084135258.1676104841696.24; uuid=2700efcb13bc4b01b495.1679800560.1.0.0; latlng=39.928159%2C116.301426; ci3=1; _lx_utm=utm_source%3Dgoogle%26utm_medium%3Dorganic; qruuid=2c6cdb43-d56e-47e9-b318-e0fa9f77f1b8; token2=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; oops=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; lt=AgEOINpYfsxEQA8kSbpS3FPRZap9f2hL4FkujT7fMmRuDbNS-fQrUghBuKCZC8ZofYhzaXY1K7WmZAAAAAC2FwAAUhu1fipk4tAVkxMZZSTdB34EZuMvZ6ysv9B-S_W9c2UiLzktROrOz7ppqPpo0oQZ; u=3352525637; n=%E7%A6%8F%E6%98%9F%E9%AB%98%E7%85%A7%E5%AF%BF%E6%AF%94%E5%8D%97%E5%B1%B1; unc=%E7%A6%8F%E6%98%9F%E9%AB%98%E7%85%A7%E5%AF%BF%E6%AF%94%E5%8D%97%E5%B1%B1; lat=40.052377; lng=116.310177; client-id=79f01014-150a-4c33-bfec-56032a3886de; firstTime=1680436820577; _lxsdk_s=18741d40e86-4a5-b61-636%7C%7C21'
     }
     for cateid in CATEID:
         maxUrl = f'https://bj.meituan.com/meishi/api/poi/getPoiList?cityName={cityname}&cateId={cateid}&areaId=0&sort=&dinnerCountAttrId=&page=1&userId=3352525637&uuid=702525fd116b48578bc4.1675943406.1.0.0&platform=1&partner=126&originUrl=https%3A%2F%2Fbj.meituan.com%2Fmeishi%2Fc393%2&riskLevel=1&optimusCode=10&_token=eJxVjl9vokAUxb%2FLvEJkgCkwvtEVELZot8CobPpAYfgrKjCguNnvvtPUPmxyk3Puub%2BbnD%2BgdzOwlCHEEIpgoj1YAnkBFxoQARv4RdM1iBCC2MBPIkj%2Fz7DBnz56sgLL3%2FKTqomaYrx%2FJm88%2BEqwBt%2FFh1W4VRCfT8blCCgZuwxLSfqoFy2t2JicFum5lbgfykpKVaxKvAjgfBtynmvz0OSh7Hv3eXPODlVx4o56V1JH8mjOll9SIXiOmHAt5pA43ltMdhetQ%2BuD%2F%2BwFZnookjbaKmEeCL%2BsbYT1%2Bt7P6KRO816no9mPL6T2Jssv4Hra5H7Yl5AVkoKkCRn6j7t96tw88HVUEXap4nR3oPUYmXbskfZs3PJbbKvM2W%2FGF%2Bt1a3uoPuxpInjWOr0fbdSV2ZAFVHO7ozuRmK3IsC%2BNLLCMSGYdVgU3sUdv9%2FM4Rc5dy5JaHpLznO%2Fo9aY0DdZXVhfTrNpARVdMOWudia7WXVhWzTBuJMNyor4Bf%2F8BEFuTHg%3D%3D'
@@ -213,7 +215,7 @@ def get_commenturl(cityname,cityurl):
                 commentUrl = f'https://bj.meituan.com/meishi/api/poi/getMerchantComment?uuid=702525fd116b48578bc4.1675943406.1.0.0&platform=1&partner=126&originUrl={pageShopUrl}&optimusCode=10&id={poiid}&userId=3352525637&offset=0&pageSize=10&sortType=1&tag'
                 if commentUrl not in COMMENTURL:
                     COMMENTURL.append(commentUrl)
-    print(len(COMMENTURL))
+    print('评论url长度:',len(COMMENTURL))
 
 # 异步下载
 async def download_one_comment(url):
@@ -263,9 +265,10 @@ if __name__ == '__main__':
             f.write(url)
             f.write('\n')
 
-    # with open('backup_url.txt','r',encoding='utf-8') as f:
-    #     for line in f.readlines():
-    #         COMMENTURL.append(line.replace('\n',''))
+    # 打开文件中的评论链接,放入COMMENTURL列表中,已有美团评论链接txt--meituan_url.txt
+    with open('backup_url.txt','r',encoding='utf-8') as f:
+        for line in f.readlines():
+            COMMENTURL.append(line.replace('\n',''))
     
     # 异步下载 每次100个异步任务
     loop = asyncio.get_event_loop()
